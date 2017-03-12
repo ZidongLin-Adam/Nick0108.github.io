@@ -1,0 +1,18 @@
+/*通用样式*/
+.wd1200{
+	width:1200px;
+	margin:0 auto;
+}
+
+.fl{
+	float:left
+}
+
+.fr{
+	float:right
+}
+
+.clear_all{
+	clear: both;
+	overflow: hidden;
+}
