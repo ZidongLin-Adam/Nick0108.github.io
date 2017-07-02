@@ -4,12 +4,25 @@
 	margin:0 auto;
 }
 
+.wd1000{
+	width:1000px;
+	margin:0 auto;
+}
+
 .fl{
 	float:left
 }
 
 .fr{
 	float:right
+}
+
+.mid{
+	margin:0 auto;
+}
+
+.img_center{
+	text-align:center;
 }
 
 .clear_all{
