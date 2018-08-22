@@ -1,0 +1,74 @@
+.container {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width:100%;
+    height:100%;
+    
+    pointer-events:none;  
+}
+
+
+.container >.button {
+    pointer-events:auto;
+
+    // width:100%;
+    // height:100%;
+    
+    margin: 0;
+    position: relative;
+  //  top:50%;
+   // left:50%;
+  //  width:500px;
+   // height:500px;
+    // 
+    
+    //  margin: 0 auto;
+    // display: inline-block;
+    // align:center;
+        
+   
+    
+    cursor:pointer;
+    overflow:hidden;
+    opacity: 1;
+    outline: none;
+    border: none;
+    
+    
+    
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    
+    -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+}
+
+.container >.button > .asset-tag-id{
+    position: relative;
+  
+    width:100%;
+    height:100%;
+    
+    
+     background-image: url("asset-tag-normal");
+    background-repeat:no-repeat;
+    background-size: 100% 100%;    
+}
+
+
+/*
+.container > .button:hover {
+    background-image:url("asset-tag-hovered");
+    
+}
+*/
+
+
+.container > .button >.asset-tag-id:active {
+    background-image:url("asset-tag-pressed");
+    
+}

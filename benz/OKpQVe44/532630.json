@@ -1,0 +1,414 @@
+{
+    "name": "VR",
+    "created": "2017-06-19T06:59:52.066Z",
+    "settings": {
+        "physics": {
+            "gravity": [
+                0,
+                -9.8,
+                0
+            ]
+        },
+        "render": {
+            "fog_end": 1000,
+            "tonemapping": 0,
+            "skybox": null,
+            "fog_density": 0.01,
+            "gamma_correction": 1,
+            "exposure": 1,
+            "fog_start": 1,
+            "global_ambient": [
+                0.2,
+                0.2,
+                0.2
+            ],
+            "skyboxIntensity": 1,
+            "fog_color": [
+                0,
+                0,
+                0
+            ],
+            "lightmapMode": 0,
+            "fog": "none",
+            "lightmapMaxResolution": 2,
+            "skyboxMip": 0,
+            "lightmapSizeMultiplier": 1
+        }
+    },
+    "entities": {
+        "e4678a0c-54bc-11e7-98e1-026349a27a7c": {
+            "position": [
+                0,
+                0,
+                0
+            ],
+            "scale": [
+                1,
+                1,
+                1
+            ],
+            "name": "Root",
+            "parent": null,
+            "resource_id": "e4678a0c-54bc-11e7-98e1-026349a27a7c",
+            "components": {
+                "script": {
+                    "enabled": true,
+                    "order": [
+                        "main"
+                    ],
+                    "scripts": {
+                        "main": {
+                            "enabled": true,
+                            "attributes": {}
+                        }
+                    }
+                }
+            },
+            "rotation": [
+                0,
+                0,
+                0
+            ],
+            "tags": [],
+            "enabled": true,
+            "children": [
+                "22d5cdbe-fdc6-4cea-a794-7fb711c911df",
+                "b267ab91-eccf-4f21-bc35-9a6b4638375c"
+            ]
+        },
+        "3fb13242-6e1b-4159-836c-bb495736fdfd": {
+            "name": "sphere",
+            "tags": [],
+            "enabled": true,
+            "resource_id": "3fb13242-6e1b-4159-836c-bb495736fdfd",
+            "parent": "22d5cdbe-fdc6-4cea-a794-7fb711c911df",
+            "children": [],
+            "position": [
+                0,
+                0,
+                0
+            ],
+            "rotation": [
+                0,
+                0,
+                180
+            ],
+            "scale": [
+                -100,
+                -100,
+                -100
+            ],
+            "components": {
+                "model": {
+                    "enabled": true,
+                    "isStatic": false,
+                    "type": "asset",
+                    "asset": 8241219,
+                    "materialAsset": null,
+                    "castShadows": false,
+                    "castShadowsLightmap": false,
+                    "receiveShadows": false,
+                    "lightmapped": false,
+                    "lightmapSizeMultiplier": 1
+                }
+            }
+        },
+        "3a7c02f5-c2a7-4274-a7e1-cff384d51e9b": {
+            "name": "Camera",
+            "tags": [],
+            "enabled": true,
+            "resource_id": "3a7c02f5-c2a7-4274-a7e1-cff384d51e9b",
+            "parent": "22d5cdbe-fdc6-4cea-a794-7fb711c911df",
+            "children": [],
+            "position": [
+                0,
+                0,
+                0
+            ],
+            "rotation": [
+                0,
+                90,
+                0
+            ],
+            "scale": [
+                1,
+                1,
+                1
+            ],
+            "components": {
+                "camera": {
+                    "enabled": true,
+                    "clearColorBuffer": true,
+                    "clearColor": [
+                        0.118,
+                        0.118,
+                        0.118,
+                        1
+                    ],
+                    "clearDepthBuffer": true,
+                    "projection": 0,
+                    "fov": 75,
+                    "frustumCulling": true,
+                    "orthoHeight": 4,
+                    "nearClip": 0.1,
+                    "farClip": 1000,
+                    "priority": 0,
+                    "rect": [
+                        0,
+                        0,
+                        1,
+                        1
+                    ]
+                },
+                "script": {
+                    "enabled": true,
+                    "order": [
+                        "lookCamera"
+                    ],
+                    "scripts": {
+                        "lookCamera": {
+                            "enabled": true,
+                            "attributes": {
+                                "mouseLookSensitivity": 0.25,
+                                "touchLookSensitivity": 0.35,
+                                "snappinessFactor": 0.15
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "22d5cdbe-fdc6-4cea-a794-7fb711c911df": {
+            "name": "root2",
+            "tags": [],
+            "enabled": true,
+            "resource_id": "22d5cdbe-fdc6-4cea-a794-7fb711c911df",
+            "parent": "e4678a0c-54bc-11e7-98e1-026349a27a7c",
+            "children": [
+                "3fb13242-6e1b-4159-836c-bb495736fdfd",
+                "3a7c02f5-c2a7-4274-a7e1-cff384d51e9b"
+            ],
+            "position": [
+                0,
+                0,
+                0
+            ],
+            "rotation": [
+                0,
+                0,
+                0
+            ],
+            "scale": [
+                1,
+                1,
+                1
+            ],
+            "components": {
+                "script": {
+                    "enabled": true,
+                    "order": [],
+                    "scripts": {}
+                }
+            }
+        },
+        "b267ab91-eccf-4f21-bc35-9a6b4638375c": {
+            "name": "UI",
+            "tags": [],
+            "enabled": true,
+            "resource_id": "b267ab91-eccf-4f21-bc35-9a6b4638375c",
+            "parent": "e4678a0c-54bc-11e7-98e1-026349a27a7c",
+            "children": [
+                "5993a8bc-056f-4102-bc4f-474b8df71bc4",
+                "8a170b62-c7a4-487c-9f32-f36b5af01dc4",
+                "e5d683e6-40af-42c2-94fd-f3bb54320162"
+            ],
+            "position": [
+                0,
+                0,
+                0
+            ],
+            "rotation": [
+                0,
+                0,
+                0
+            ],
+            "scale": [
+                1,
+                1,
+                1
+            ],
+            "components": {}
+        },
+        "5993a8bc-056f-4102-bc4f-474b8df71bc4": {
+            "name": "BT_IN",
+            "tags": [],
+            "enabled": false,
+            "resource_id": "5993a8bc-056f-4102-bc4f-474b8df71bc4",
+            "parent": "b267ab91-eccf-4f21-bc35-9a6b4638375c",
+            "children": [],
+            "position": [
+                0,
+                0,
+                0
+            ],
+            "rotation": [
+                0,
+                0,
+                0
+            ],
+            "scale": [
+                1,
+                1,
+                1
+            ],
+            "components": {
+                "script": {
+                    "enabled": true,
+                    "order": [
+                        "btn"
+                    ],
+                    "scripts": {
+                        "btn": {
+                            "enabled": true,
+                            "attributes": {
+                                "css": 8237199,
+                                "html": 8237198,
+                                "textureNormal": 8237203,
+                                "textureHovered": 8237203,
+                                "texturePressed": 8237203,
+                                "pos": [
+                                    70,
+                                    -10
+                                ],
+                                "size": [
+                                    50,
+                                    50
+                                ],
+                                "anchor": 6,
+                                "pivot": 6,
+                                "event_name": "color"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "8a170b62-c7a4-487c-9f32-f36b5af01dc4": {
+            "name": "fullscreen",
+            "tags": [],
+            "enabled": false,
+            "resource_id": "8a170b62-c7a4-487c-9f32-f36b5af01dc4",
+            "parent": "b267ab91-eccf-4f21-bc35-9a6b4638375c",
+            "children": [],
+            "position": [
+                0,
+                0,
+                0
+            ],
+            "rotation": [
+                0,
+                0,
+                0
+            ],
+            "scale": [
+                1,
+                1,
+                1
+            ],
+            "components": {
+                "script": {
+                    "enabled": true,
+                    "order": [
+                        "btn"
+                    ],
+                    "scripts": {
+                        "btn": {
+                            "enabled": true,
+                            "attributes": {
+                                "css": 8237199,
+                                "html": 8237198,
+                                "textureNormal": 8237208,
+                                "textureHovered": 8237208,
+                                "texturePressed": 8237208,
+                                "pos": [
+                                    -10,
+                                    10
+                                ],
+                                "size": [
+                                    50,
+                                    50
+                                ],
+                                "anchor": 2,
+                                "pivot": 2,
+                                "event_name": "fullscreen"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "e5d683e6-40af-42c2-94fd-f3bb54320162": {
+            "name": "BT_Color",
+            "tags": [],
+            "enabled": true,
+            "resource_id": "e5d683e6-40af-42c2-94fd-f3bb54320162",
+            "parent": "b267ab91-eccf-4f21-bc35-9a6b4638375c",
+            "children": [],
+            "position": [
+                0,
+                0,
+                0
+            ],
+            "rotation": [
+                0,
+                0,
+                0
+            ],
+            "scale": [
+                1,
+                1,
+                1
+            ],
+            "components": {
+                "script": {
+                    "enabled": true,
+                    "order": [
+                        "btn",
+                        "changeScene"
+                    ],
+                    "scripts": {
+                        "btn": {
+                            "enabled": true,
+                            "attributes": {
+                                "css": 8237199,
+                                "html": 8237198,
+                                "textureNormal": 8237204,
+                                "textureHovered": 8237204,
+                                "texturePressed": 8237204,
+                                "pos": [
+                                    10,
+                                    -10
+                                ],
+                                "size": [
+                                    50,
+                                    50
+                                ],
+                                "anchor": 6,
+                                "pivot": 6,
+                                "event_name": "scene:change"
+                            }
+                        },
+                        "changeScene": {
+                            "enabled": true,
+                            "attributes": {
+                                "sceneId": "532519",
+                                "event_name": "scene:change"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "id": 532630
+}
