@@ -38,7 +38,7 @@ var filesToCache = [
   ‘./OKpQVe44/logo_1.png',
   ‘./OKpQVe44/manifest.json',
   ‘./OKpQVe44/styles.css',
-  ‘./OKpQVe44/__game-scripts.js',
+  ‘./OKpQVe44/game-scripts.js',
   ‘./OKpQVe44/loading.js',
   ‘./OKpQVe44/start.js',
   ‘./OKpQVe44/files/assets/8236996/1/Alcantara_DFS.jpg',
