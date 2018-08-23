@@ -15,6 +15,7 @@
 var dataCacheName = 'BenzData-v1';
 var cacheName = 'BenzPWA-final-1';
 var filesToCache = [
+  '/',
   './',
   './index.html',
   './logo_1.png',
@@ -156,7 +157,7 @@ self.addEventListener('activate', function(e) {
 
 self.addEventListener('fetch', function(e) {
   console.log('[Service Worker] Fetch', e.request.url);
-  var dataUrl = 'https://www.linsfruit.com/benz/';
+  var dataUrl = 'www.linsfruit.com/benz/';
   if (e.request.url.indexOf(dataUrl) > -1) {
     /*
      * When the request URL contains dataUrl, the app is asking for fresh
