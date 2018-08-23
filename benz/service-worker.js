@@ -15,7 +15,7 @@
 var dataCacheName = 'BenzData-v1';
 var cacheName = 'BenzPWA-final-1';
 var filesToCache = [
-  ‘./',
+  ‘/benz/',
   ‘./index.html',
   ‘./logo_1.png',
   ‘./manifest.json',
