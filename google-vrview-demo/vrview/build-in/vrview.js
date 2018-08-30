@@ -673,7 +673,7 @@ Player.prototype.getEmbedUrl_ = function() {
   // Assume that the script is in $ROOT/build/something.js, and that the iframe
   // HTML is in $ROOT/index.html.
   //
-  // E.g: /vrview/2.0/build/vrview.min.js => /vrview/2.0/index.html.
+  // E.g: /vrview/2.0/build-in/vrview.min.js => /vrview/2.0/index.html.
   var path = CURRENT_SCRIPT_SRC;
   var split = path.split('/');
   var rootSplit = split.slice(0, split.length - 2);
