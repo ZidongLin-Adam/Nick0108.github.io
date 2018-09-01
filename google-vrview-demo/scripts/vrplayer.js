@@ -26,7 +26,7 @@ function onVrViewLoad() {
   vrView = new VRView.Player('#vrplayer', {
     //参数详细介绍看这里https://github.com/googlevr/vrview/tree/links-to-build
     //注意video与image在打包到安卓机后要用file:///的形式（绝对路径）
-    video: '/google-vrview-demo/video/PPAP',
+    video: '/google-vrview-demo/video/PPAP.mp4',
     //image: '',
     width:'100%',
     height:'100%',

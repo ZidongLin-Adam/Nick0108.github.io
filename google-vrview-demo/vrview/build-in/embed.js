@@ -2953,7 +2953,11 @@ function ButtonManager(opt_root) {
   this.vrButton = vrButton;
 
   this.isVisible = true;
-
+  
+  if(Util.isMobile()){
+    fsButton.style.display = 'none';
+    vrButton.style.right = 0;
+  }
 }
 ButtonManager.prototype = new Emitter();
 
@@ -3020,11 +3024,21 @@ ButtonManager.prototype.setMode = function(mode, isVRCompatible) {
   this.fsButton.style.display = 'inline-block';
   this.fsButton.offsetHeight;
   this.fsButton.style.display = oldValue;
+
+  //对手机进行特殊处理
+  if(Util.isMobile()){
+    //alert("Util.isMobile() = "+Util.isMobile())
+    this.fsButton.style.display = 'none';
+  }
 };
 
 ButtonManager.prototype.setVisibility = function(isVisible) {
   this.isVisible = isVisible;
-  this.fsButton.style.display = isVisible ? 'block' : 'none';
+  if(Util.isMobile()){//针对mobile平台处理
+    this.fsButton.style.display = 'none';
+  }else{
+    this.fsButton.style.display = isVisible ? 'block' : 'none';
+  }
   this.vrButton.style.display = isVisible ? 'block' : 'none';
 };
 
@@ -8342,37 +8356,37 @@ function RotateInstructions() {
   text.innerHTML = 'Place your phone into your Cardboard viewer.';
   overlay.appendChild(text);
 
-  var snackbar = document.createElement('div');
-  var s = snackbar.style;
-  s.backgroundColor = '#CFD8DC';
-  s.position = 'fixed';
-  s.bottom = 0;
-  s.width = '100%';
-  s.height = '48px';
-  s.padding = '14px 24px';
-  s.boxSizing = 'border-box';
-  s.color = '#656A6B';
-  overlay.appendChild(snackbar);
+  // var snackbar = document.createElement('div');
+  // var s = snackbar.style;
+  // s.backgroundColor = '#CFD8DC';
+  // s.position = 'fixed';
+  // s.bottom = 0;
+  // s.width = '100%';
+  // s.height = '48px';
+  // s.padding = '14px 24px';
+  // s.boxSizing = 'border-box';
+  // s.color = '#656A6B';
+  // overlay.appendChild(snackbar);
 
-  var snackbarText = document.createElement('div');
-  snackbarText.style.float = 'left';
-  snackbarText.innerHTML = 'No Cardboard viewer?';
+  // var snackbarText = document.createElement('div');
+  // snackbarText.style.float = 'left';
+  // snackbarText.innerHTML = 'No Cardboard viewer?';
 
-  var snackbarButton = document.createElement('a');
-  snackbarButton.href = 'https://www.google.com/get/cardboard/get-cardboard/';
-  snackbarButton.innerHTML = 'get one';
-  snackbarButton.target = '_blank';
-  var s = snackbarButton.style;
-  s.float = 'right';
-  s.fontWeight = 600;
-  s.textTransform = 'uppercase';
-  s.borderLeft = '1px solid gray';
-  s.paddingLeft = '24px';
-  s.textDecoration = 'none';
-  s.color = '#656A6B';
+  // var snackbarButton = document.createElement('a');
+  // snackbarButton.href = 'https://www.google.com/get/cardboard/get-cardboard/';
+  // snackbarButton.innerHTML = 'get one';
+  // snackbarButton.target = '_blank';
+  // var s = snackbarButton.style;
+  // s.float = 'right';
+  // s.fontWeight = 600;
+  // s.textTransform = 'uppercase';
+  // s.borderLeft = '1px solid gray';
+  // s.paddingLeft = '24px';
+  // s.textDecoration = 'none';
+  // s.color = '#656A6B';
 
-  snackbar.appendChild(snackbarText);
-  snackbar.appendChild(snackbarButton);
+  // snackbar.appendChild(snackbarText);
+  // snackbar.appendChild(snackbarButton);
 
   this.overlay = overlay;
   this.text = text;
@@ -8667,6 +8681,7 @@ function FusionPoseSensor() {
   this.resetQ = new MathUtil.Quaternion();
 
   this.isFirefoxAndroid = Util.isFirefoxAndroid();
+  this.isSpecialVersionAndroid = Util.isSpecialVersionAndroid();
   this.isIOS = Util.isIOS();
 
   this.orientationOut_ = new Float32Array(4);
@@ -8757,7 +8772,7 @@ FusionPoseSensor.prototype.updateDeviceMotion_ = function(deviceMotion) {
 
   // With iOS and Firefox Android, rotationRate is reported in degrees,
   // so we first convert to radians.
-  if (this.isIOS || this.isFirefoxAndroid) {
+  if (this.isIOS || this.isFirefoxAndroid || this.isSpecialVersionAndroid) {
     this.gyroscope.multiplyScalar(Math.PI / 180);
   }
 
@@ -9095,6 +9110,13 @@ Util.isFirefoxAndroid = (function() {
       navigator.userAgent.indexOf('Android') !== -1;
   return function() {
     return isFirefoxAndroid;
+  };
+})();
+
+Util.isSpecialVersionAndroid = (function() {
+  var isSpecialVersionAndroid = navigator.userAgent.indexOf('68.0.3440.91') !== -1;
+  return function() {
+    return isSpecialVersionAndroid;
   };
 })();
 
