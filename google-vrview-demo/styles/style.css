@@ -14,20 +14,22 @@
  * limitations under the License.
  */
 
-html,body {
+ html,body {
   margin: 0;
   height:100%;
 }
 
 iframe { border: 0; }
 
-.iframeRange {
+#iframeRange {
 	height: 100%;
-	width: 100%;
+  width: 100%;
 }
 #vrplayer{
+  /* height: calc(100% - 40px); */
   height: 100%;
-	width: 100%;
+  width: 100%;
+  display: block;
 }
 
 /* MOBILE */
@@ -37,7 +39,7 @@ iframe { border: 0; }
     width: 100%;
     display: block;
     border: none;
-    margin: 10px auto;
+    margin: 0px auto;
     margin-bottom: 0;
     padding: 0;
     border: 0;
@@ -59,18 +61,19 @@ iframe { border: 0; }
 #controls {
   overflow: hidden;
   background: #eee;
-  margin: 0 auto;
+  opacity: 1;
+  display: block;
 }
 
-  #controls > * {
-    margin: 8px;
-    cursor: pointer;
-    opacity: 0.5;
-  }
+#controls > * {
+  margin: 8px;
+  cursor: pointer;
+  opacity: 0.5;
+}
 
-  #controls > *:hover {
-    opacity: 1;
-  }
+#controls > *:hover {
+  opacity: 1;
+}
 
 
 #toggleplay {
