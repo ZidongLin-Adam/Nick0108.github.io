@@ -12,7 +12,13 @@
   <link rel="stylesheet" type="text/css" href="css/header.css"/>
   <link rel="stylesheet" type="text/css" href="css/index.css"/>
  </head>
-
+<script>
+function callapp() {
+    var u = navigator.userAgent;
+    var id= "781";
+    location.href = jsBridge.getScheme(15, {providerid: id});
+}
+</script>
  <body>
 	<!--header-->
 	<div class="header">
@@ -40,6 +46,7 @@
 			<li class="title_2"><a href="google-vrview-demo/index.html">VRview</a></li>
                         <li class="title_2"><a href="encryption/encryption.html">encryption</a></li>
 		</ul>
+		<button type="button" onclick="callapp()">调起app</button>
 	</div>
 	
  </body>
