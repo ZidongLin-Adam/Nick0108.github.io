@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
  <head lang="en">
   <meta charset="UTF-8">
@@ -6,18 +6,83 @@
   <meta name="Author" content="Nick Lin">
   <meta name="Keywords" content="">
   <meta name="Description" content="">
-  <title>Nick Lin’ BLOG</title>
+  <title>MyAESEncrypt</title>
   <link rel="stylesheet" type="text/css" href="css/common.css"/>
   <link rel="stylesheet" type="text/css" href="css/Reset.css"/>
   <link rel="stylesheet" type="text/css" href="css/header.css"/>
-  <link rel="stylesheet" type="text/css" href="css/index.css"/>
  </head>
+<script src="./aes.js"></script>
+<script>
+function encryptcode(){
+    var keyStr = document.getElementById("encryptkey").value;
+	var key = CryptoJS.enc.Utf8.parse(keyStr);
+    var plaintText = document.getElementById("plain").value;
+    var encryptedData = CryptoJS.AES.encrypt(plaintText, key, {
+    mode: CryptoJS.mode.ECB,
+    padding: CryptoJS.pad.Pkcs7
+    });
+	encryptedDataText = encryptedData.ciphertext.toString();
+	var encryptedHexStr = CryptoJS.enc.Hex.parse(encryptedDataText);
+	var encryptedBase64Str = CryptoJS.enc.Base64.stringify(encryptedHexStr);//再次转换base64，获得最后的密文
+	document.getElementById("encrypted").value = encryptedBase64Str;
+}
+function decryptcode(){
+    var keyStr = document.getElementById("decryptkey").value;
+	var key = CryptoJS.enc.Utf8.parse(keyStr);
+	var encryptedBase64Str = document.getElementById("todecrypt").value;
+	var decryptedData = CryptoJS.AES.decrypt(encryptedBase64Str, key, {
+	mode: CryptoJS.mode.ECB,
+	padding: CryptoJS.pad.Pkcs7
+	});
+	var decryptedStr = decryptedData.toString(CryptoJS.enc.Utf8);
+	document.getElementById("decrypted").value = decryptedStr;
+  }
 
- <body>
-	<!--header-->
-	<div class="wd1200">
-		<div>encryption</div>
-	</div>
-	
- </body>
+  function tryalltest(){
+	var keyStr = "";//这是密钥
+	console.log("密钥："+keyStr);
+	var key = CryptoJS.enc.Utf8.parse(keyStr);
+    console.log("密钥加密后："+key);
+    var plaintText = ''; // 这是明文
+    var encryptedData = CryptoJS.AES.encrypt(plaintText, key, {
+    mode: CryptoJS.mode.ECB,
+    padding: CryptoJS.pad.Pkcs7
+    });
+    console.log("开始加密=================================");
+	console.log("加密前："+plaintText);
+	console.log("加密后encryptedData："+encryptedData);//base64的密文，但是这是对象
+	encryptedDataText = encryptedData.ciphertext.toString();
+	console.log("加密后encryptedDataText："+encryptedDataText);//获得的密文，但是这是16进制，服务器不能用
+	var encryptedHexStr = CryptoJS.enc.Hex.parse(encryptedDataText);
+    console.log("加密后encryptedHexStr："+encryptedHexStr);//强制转换一次16进制
+	var encryptedBase64Str = CryptoJS.enc.Base64.stringify(encryptedHexStr);//再次转换base64，获得最后的密文
+	console.log("加密后encryptedBase64Str："+encryptedBase64Str);
+	console.log("加密后最终结果(base64)："+encryptedBase64Str);
+	console.log("开始解密=================================");
+	var decryptedData = CryptoJS.AES.decrypt(encryptedBase64Str, key, {
+	mode: CryptoJS.mode.ECB,
+	padding: CryptoJS.pad.Pkcs7
+	});
+	var decryptedStr = decryptedData.toString(CryptoJS.enc.Utf8);
+	console.log("解密后:"+decryptedStr);
+  }
+</script>
+</head>
+<body>
+    <h1>AES加解密</h1>
+    <div>AES128，ECB模式，CryptoJS.pad.Pkcs7</div>
+    <br>
+    <input id="plain" type="text" placeholder="未加密的明文" style="width:500px; height:60px;"/>
+	<input id="encryptkey" type="text" placeholder="加密用密钥" style="width:500px; height:30px;"/>
+        <button type="button" onclick="encryptcode()">加密</button>
+    <input id="encrypted" type="text" placeholder="加密后的密文" style="width:500px; height:60px;" />
+    <br>
+    <br>
+    <br>
+    <input id="todecrypt" type="text" placeholder="解密前密文" style="width:500px; height:60px;"/>
+	<input id="decryptkey" type="text" placeholder="解密用密钥" style="width:500px; height:30px;"/>
+        <button type="button" onclick="decryptcode()">解密</button>
+    <input id="decrypted" type="text" placeholder="解密后明文" style="width:500px; height:60px;" />
+	<!--<button type="button" onclick="tryalltest()">测试</button>-->
+</body>
 </html>
