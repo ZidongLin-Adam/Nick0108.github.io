@@ -6,36 +6,68 @@
   <meta name="Author" content="Nick Lin">
   <meta name="Keywords" content="">
   <meta name="Description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0" />
   <title>MyAESEncrypt</title>
-  <link rel="stylesheet" type="text/css" href="css/common.css"/>
-  <link rel="stylesheet" type="text/css" href="css/Reset.css"/>
-  <link rel="stylesheet" type="text/css" href="css/header.css"/>
+  <link rel="stylesheet" href="./css/bootstrap.min.css">
+  <script src="./js/jquery-3.3.1.slim.min.js"></script>
+  <script src="./js/popper.min.js"></script>
+  <script src="./js/bootstrap.min.js"></script>
+  <script src="./js/aes.js"></script>
+  <style>
+    .paddingbasic{padding: 5px;margin: 5px;}
+	.col-center-block {
+		float: none;
+		display: block;
+		margin-left: auto;
+		margin-right: auto;
+	}
+	.inputcode{width:75%;max-width:500px; height:50px; display: inline-block;}
+	.inputkey{width:75%;max-width:500px; height:40px; display: inline-block;}
+	.btn-press{width:100%;max-width:555px; height:40px;}
+	.btn-clear{width:10%;}
+	.btn-copy{width:10%;}
+	#outborder{padding-left: 10%;padding-right: 10%;}
+  </style>
  </head>
-<script src="./aes.js"></script>
+
 <script>
+(function adjustWidth(){
+	var wholewidth = window.screen.width;
+	$(outborder).width = wholewidth;
+})
+
 function encryptcode(){
-    var keyStr = document.getElementById("encryptkey").value;
-	var key = CryptoJS.enc.Utf8.parse(keyStr);
-    var plaintText = document.getElementById("plain").value;
-    var encryptedData = CryptoJS.AES.encrypt(plaintText, key, {
-    mode: CryptoJS.mode.ECB,
-    padding: CryptoJS.pad.Pkcs7
-    });
-	encryptedDataText = encryptedData.ciphertext.toString();
-	var encryptedHexStr = CryptoJS.enc.Hex.parse(encryptedDataText);
-	var encryptedBase64Str = CryptoJS.enc.Base64.stringify(encryptedHexStr);//再次转换base64，获得最后的密文
-	document.getElementById("encrypted").value = encryptedBase64Str;
+	try{
+		var keyStr = document.getElementById("encryptkey").value;
+		var key = CryptoJS.enc.Utf8.parse(keyStr);
+		var plaintText = document.getElementById("plain").value;
+		var encryptedData = CryptoJS.AES.encrypt(plaintText, key, {
+		mode: CryptoJS.mode.ECB,
+		padding: CryptoJS.pad.Pkcs7
+		});
+		encryptedDataText = encryptedData.ciphertext.toString();
+		var encryptedHexStr = CryptoJS.enc.Hex.parse(encryptedDataText);
+		var encryptedBase64Str = CryptoJS.enc.Base64.stringify(encryptedHexStr);//再次转换base64，获得最后的密文
+		document.getElementById("encrypted").value = encryptedBase64Str;
+	}catch(ex){
+		$(output-text).text = ex.toString();
+	}
+    
 }
 function decryptcode(){
-    var keyStr = document.getElementById("decryptkey").value;
-	var key = CryptoJS.enc.Utf8.parse(keyStr);
-	var encryptedBase64Str = document.getElementById("todecrypt").value;
-	var decryptedData = CryptoJS.AES.decrypt(encryptedBase64Str, key, {
-	mode: CryptoJS.mode.ECB,
-	padding: CryptoJS.pad.Pkcs7
-	});
-	var decryptedStr = decryptedData.toString(CryptoJS.enc.Utf8);
-	document.getElementById("decrypted").value = decryptedStr;
+	try{
+		var keyStr = document.getElementById("decryptkey").value;
+		var key = CryptoJS.enc.Utf8.parse(keyStr);
+		var encryptedBase64Str = document.getElementById("todecrypt").value;
+		var decryptedData = CryptoJS.AES.decrypt(encryptedBase64Str, key, {
+		mode: CryptoJS.mode.ECB,
+		padding: CryptoJS.pad.Pkcs7
+		});
+		var decryptedStr = decryptedData.toString(CryptoJS.enc.Utf8);
+		document.getElementById("decrypted").value = decryptedStr;
+	}catch(ex){
+		$(output-text).text = ex.toString();
+	}
   }
 
   function tryalltest(){
@@ -66,23 +98,60 @@ function decryptcode(){
 	var decryptedStr = decryptedData.toString(CryptoJS.enc.Utf8);
 	console.log("解密后:"+decryptedStr);
   }
+
+  function clearinput(obj){
+	var clearobj = $(obj);
+	clearobj.prev().val("");
+  }
+
+  function copyinput(obj){
+	var copyobj = $(obj);
+	copyobj.next().select();
+	document.execCommand("Copy");
+  }
 </script>
 </head>
 <body>
-    <h1>AES加解密</h1>
-    <div>AES128，ECB模式，CryptoJS.pad.Pkcs7</div>
-    <br>
-    <input id="plain" type="text" placeholder="未加密的明文" style="width:500px; height:60px;"/>
-	<input id="encryptkey" type="text" placeholder="加密用密钥" style="width:500px; height:30px;"/>
-        <button type="button" onclick="encryptcode()">加密</button>
-    <input id="encrypted" type="text" placeholder="加密后的密文" style="width:500px; height:60px;" />
-    <br>
-    <br>
-    <br>
-    <input id="todecrypt" type="text" placeholder="解密前密文" style="width:500px; height:60px;"/>
-	<input id="decryptkey" type="text" placeholder="解密用密钥" style="width:500px; height:30px;"/>
-        <button type="button" onclick="decryptcode()">解密</button>
-    <input id="decrypted" type="text" placeholder="解密后明文" style="width:500px; height:60px;" />
+	<div id="outborder" class="center-block">
+	  <div>
+		  <h1>AES加解密</h1>
+		  <p class="lead">AES128,ECB模式,CryptoJS.pad.Pkcs7</p>
+		  <div style="display:block">
+			<button type="button" onclick="copyinput(this)" class="btn btn-xs btn-warning">复制</button>
+			<input id="plain" class="form-control paddingbasic inputcode" type="text" placeholder="未加密的明文"/>
+			<button type="button" onclick="clearinput(this)" class="btn btn-xs btn-danger">×</button>
+		  </div>
+		  <div style="display:block">
+			<button type="button" onclick="copyinput(this)" class="btn btn-xs btn-warning">复制</button>
+			<input id="encryptkey" class="form-control paddingbasic inputkey" type="text" placeholder="加密用密钥"/>
+			<button type="button" onclick="clearinput(this)" class="btn btn-xs btn-danger">×</button>
+		  </div>
+		  <button type="button" class="btn btn-primary paddingbasic btn-press" onclick="encryptcode()">加密</button>
+		  <div style="display:block">
+			<button type="button" onclick="copyinput(this)" class="btn btn-xs btn-warning">复制</button>
+			<input id="encrypted" class="form-control paddingbasic inputcode" type="text" placeholder="加密后的密文" />
+			<button type="button" onclick="clearinput(this)" class="btn btn-xs btn-danger">×</button>
+		  </div>
+		  <p id="output-text" class="text-danger"></p>
+		  <div style="display:block">
+			<button type="button" onclick="copyinput(this)" class="btn btn-xs btn-warning">复制</button>
+			<input id="todecrypt" class="form-control paddingbasic inputcode" type="text" placeholder="解密前密文"/>
+			<button type="button" onclick="clearinput(this)" class="btn btn-xs btn-danger">×</button>
+		  </div>
+		  <div style="display:block">
+			<button type="button" onclick="copyinput(this)" class="btn btn-xs btn-warning">复制</button>
+			<input id="decryptkey" class="form-control paddingbasic inputkey" type="text" placeholder="解密用密钥"/>
+			<button type="button" onclick="clearinput(this)" class="btn btn-xs btn-danger">×</button>
+		  </div>
+		  <button type="button" class="btn btn-primary paddingbasic btn-press" onclick="decryptcode()">解密</button>
+		  <div style="display:block">
+			<button type="button" onclick="copyinput(this)" class="btn btn-xs btn-warning">复制</button>
+			<input id="decrypted" class="form-control paddingbasic inputcode" type="text" placeholder="解密后明文"/>
+			<button type="button" onclick="clearinput(this)" class="btn btn-xs btn-danger">×</button>
+		  </div>
+		  <br>
+	  </div>
+	</div>
 	<!--<button type="button" onclick="tryalltest()">测试</button>-->
 </body>
 </html>
