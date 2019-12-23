@@ -1,0 +1,28 @@
+{
+    "communuities":[
+        {
+            "class":"facebook",
+            "class_i":"fab fa-facebook-f",
+            "title":"",
+            "logo":"",
+            "url":"#",
+            "numbers":"0"
+        },
+        {
+            "class":"twitter",
+            "class_i":"fab fa-twitter",
+            "title":"",
+            "logo":"",
+            "url":"#",
+            "numbers":"0"
+        },
+        {
+            "class":"pinterest",
+            "class_i":"fab fa-pinterest-p",
+            "title":"",
+            "logo":"",
+            "url":"#",
+            "numbers":"0"
+        }
+    ]
+}

@@ -1,0 +1,17 @@
+{
+    "tool_name":"线上小工具",
+    "online_tools":[
+        {
+            "name":"AES加密解密",
+            "url":"./encryption/encryption.html"
+        },
+        {
+            "name":"在线ps",
+            "url":"https://www.photopea.com"
+        },
+        {
+            "name":"站长工具",
+            "url":"http://tool.chinaz.com"
+        }
+    ]
+}

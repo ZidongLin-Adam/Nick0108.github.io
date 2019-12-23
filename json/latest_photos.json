@@ -1,0 +1,17 @@
+{
+    "photo_name":"最近留照",
+    "photos":[
+        {
+            "photo":"images/resources/img_wall.jpg",
+            "url":"#"
+        },
+        {
+            "photo":"images/resources/img_faith.jpg",
+            "url":"#"
+        },
+        {
+            "photo":"images/resources/img_tech.jpg",
+            "url":"#"
+        }
+    ]
+}
