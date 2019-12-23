@@ -3,15 +3,18 @@
     "photos":[
         {
             "photo":"images/resources/img_wall.jpg",
-            "url":"#"
+            "url":"#",
+            "alt":""
         },
         {
             "photo":"images/resources/img_faith.jpg",
-            "url":"#"
+            "url":"#",
+            "alt":""
         },
         {
             "photo":"images/resources/img_tech.jpg",
-            "url":"#"
+            "url":"#",
+            "alt":""
         }
     ]
 }
